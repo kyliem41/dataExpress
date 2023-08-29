@@ -1,0 +1,108 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  br 
+  br
+  div 
+    canvas(id="myChartCookies", width=400, height=150)
+  div 
+    canvas(id="myChartColor", width=400, height=150)
+  div 
+    canvas(id="myChartLang", width=400, height=150)
+  script(src="https://cdn.jsdelivr.net/npm/chart.js")
+  script(src="/client.js")
+
+  script.
+    const ctxCookies = document.getElementById("myChartCookies");
+
+    new Chart(ctxCookies, {
+      type: 'bar',
+      data: {
+        labels: ['Chips Ahoy', 'Oreo', 'Oatmeal Raisin', 'Macadamia Nut'],
+        datasets: [{
+          label: '# of votes',
+          data: [9, 6, 3, 4],
+          backgroundColor: '#97D8C4',
+          borderColor: 'black',
+          borderWidth: 1
+        }] 
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Favorite Cookies Table',
+            color: 'black'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });    
+
+  script.
+    const ctxColor = document.getElementById("myChartColor");
+
+    new Chart(ctxColor, {
+      type: 'bar',
+      data: {
+        labels: ['Red', 'Green', 'Blue', 'Purple'],
+        datasets: [{
+          label: '# of votes',
+          data: [7, 11, 3, 5,],
+          backgroundColor: '#E7BBE3',
+          borderColor: 'black',
+          borderWidth: 1,
+        }] 
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Favorite Colors Table',
+            color: 'black'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });  
+
+  script.
+    const ctxLang = document.getElementById("myChartLang");
+
+    new Chart(ctxLang, {
+      type: 'bar',
+      data: {
+        labels: ['Java', 'JavaScript', 'Python', 'C++'],
+        datasets: [{
+          label: '# of votes',
+          data: [10, 8, 3, 9],
+          backgroundColor: '#7CC6FE',
+          borderColor: 'black',
+          borderWidth: 1
+        }] 
+      },
+      options: {
+        plugins: {
+          title: {
+            display: true,
+            text: 'Favorite Programming Languages Table',
+            color: 'black'
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });   

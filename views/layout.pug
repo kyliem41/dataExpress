@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    header 
+      title= title
+      link(rel='stylesheet', href='/stylesheets/style.css')
+      script(src='/javascripts/client.js')
+  body
+    nav 
+      ul 
+        li 
+          a(href='/') Home 
+        li 
+          a(href='/logIn') Log In 
+        li 
+          a(href='/signUp') Sign Up
+  main
+    block content
+  footer

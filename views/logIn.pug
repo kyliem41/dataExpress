@@ -1,0 +1,22 @@
+extends layout 
+
+block content
+  form(id="logInForm", action="/logIn", method="GET")
+        br
+        br
+        div
+            label(for="username") Username: 
+            br
+            input(type="text" name="username" placeholder="Your Username")
+            br
+            br
+            br
+        div
+            label(for="password") Password: 
+            br
+            input(type="text" name="password" placeholder="Your Password")
+        div
+            br
+            br
+            br
+            button(type="submit", id='logIn_btn', onclick="handleFormSign(event)") Log In

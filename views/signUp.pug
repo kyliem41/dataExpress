@@ -1,0 +1,92 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  br  
+  form(id="signUpForm", action="/signUp", method="POST")
+        br
+        br
+        div
+            label(for="username") Name: 
+            br
+            input(type="text" name="username" placeholder="Your Username")
+            br
+            br
+            br
+        div
+            label(for="password") Password: 
+            br
+            input(type="text" name="password" placeholder="Your Password")
+            br
+            br
+            br
+        div
+            label(for="age") Age: 
+            br
+            input(type="number" name="age" placeholder="Your Age")
+            br
+            br
+            br
+        div
+            label(for="email") Email: 
+            br
+            input(type="email" name="email" placeholder="Your Email")
+            br
+            br
+            br
+        div.question
+            p Out of these cookies what is the best?
+            label(for="option1")
+            input(type="radio" name="answer1" id="option1" value="Chips Ahoy")
+            | Chips Ahoy
+
+            label(for="option2")
+            input(type="radio" name="answer1" id="option2" value="Oreo")
+            | Oreo
+
+            label(for="option3")
+            input(type="radio" name="answer1" id="option3" value="berlin")
+            | Oatmeal Raisen
+
+            label(for="option4")
+            input(type="radio" name="answer1" id="option4" value="madrid")
+            | Macadamia Nut
+        div.question
+            p What is your favorite color?
+            label(for="option1")
+            input(type="radio" name="answer2" id="option1" value="Red")
+            | Red
+
+            label(for="option2")
+            input(type="radio" name="answer2" id="option2" value="Green")
+            | Green
+
+            label(for="option3")
+            input(type="radio" name="answer2" id="option3" value="Blue")
+            | Blue
+
+            label(for="option4")
+            input(type="radio" name="answer2" id="option4" value="Purple")
+            | Purple
+        div.question
+            p What is your favorite coding language?
+            label(for="option1")
+            input(type="radio" name="answer3" id="option1" value="Java")
+            | Java
+
+            label(for="option2")
+            input(type="radio" name="answer3" id="option2" value="Javascript")
+            | Javascript
+
+            label(for="option3")
+            input(type="radio" name="answer3" id="option3" value="Python")
+            | Python
+
+            label(for="option4")
+            input(type="radio" name="answer3" id="option4" value="Cpp")
+            | C++
+        div
+            br
+            br
+            button(type="submit", id='signUp_btn', onclick='handleFormCreate(event)') Sign Up
