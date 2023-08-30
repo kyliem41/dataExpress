@@ -23,7 +23,7 @@ function signIn() {
     // }
 
     fetch(`/logIn?username=${username}&password=${password}`, {
-        method: 'GET',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         }
@@ -53,8 +53,6 @@ function createUser() {
     const answer1 = formData.get("answer1");
     const answer2 = formData.get("answer2");
     const answer3 = formData.get("answer3");
-
-    //const hashedPass = bcrypt.hash(password, 10);
 
     const userData = {
         username: username,
@@ -87,5 +85,8 @@ function createUser() {
 }
 
 function updateInfo() {
+    fetch('localhost:3000/api').then(response => response.json()).then((data) => {
 
+    })
 }
+updateInf

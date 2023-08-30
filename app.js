@@ -23,7 +23,7 @@ const store = new MongoDBStore({
 app.use(session({
    secret: 'tester',
     cookie: { maxAge: 60000 }
-  }));
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

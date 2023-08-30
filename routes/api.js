@@ -13,8 +13,33 @@ const database = client.db('dataExpress');
 const collection = database.collection('users');
 
 /* GET home page. */
-router.get('/', function(req, res, next) { // log in
-    
+router.get('/', async function(req, res, next) { // get graph data
+
+    const client = new MongoClient(uri);
+
+    try {
+      await client.connect();
+      const database = client.db("dataExpress");
+      const collection = database.collection("users");
+      collection.find({}, function(err, docs){
+        if (err) {
+            console.log(err);
+            return;
+        }
+        docs.forEach(function(doc, index) { 
+            let person = collection.findOne(doc) 
+            console.log(person) 
+        });
+    });
+
+
+      res.json({ success: true });
+    } catch (err) {
+      console.log(err);
+      res.json({ success: false });
+    } finally {
+      await client.close();
+    }
 
 });
 
