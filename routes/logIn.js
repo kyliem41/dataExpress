@@ -28,22 +28,13 @@ router.post('/', async function (req, res, next) {
       password
     } = req.query;
 
-    let hashedPass = await passwordUtil.hashPass(password);
-
-    let user = {
-      username: username,
-      password: hashedPass
-    }
-
-    const userLogIn = await collection.findOne({ username: user.username });
+    const userLogIn = await collection.findOne({ username: username });
 
     console.log("Recieved username: ", username);
     console.log("Received password: ", password);
-    console.log("Hashed password: ", hashedPass);
-    console.log("Retrieved user: ", userLogIn);
 
     console.log("Retrieved user from DB: ", userLogIn);
-    console.log("Comparing hashed passwords: ", hashedPass, userLogIn.password)
+    console.log("Comparing hashed passwords: ", password, "\n", userLogIn.password)
 
     if (userLogIn && await passwordUtil.comparePass(password, userLogIn.password)) {
       res.json({ success: true });

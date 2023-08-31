@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.router();
+var router = express.Router();
 
 router.post('/', (req, res) => {
     req.session.destroy((err) => {
