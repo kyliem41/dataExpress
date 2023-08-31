@@ -4,23 +4,8 @@ block content
   h1= title
   p Welcome to #{title}
   br  
-  form(id="signUpForm", action="/signUp", method="POST")
+  form(id="updateForm", action="/update", method="POST")
         br
-        br
-        div
-            label(for="username") Name: 
-            br
-            input(type="text" name="username" placeholder="Your Username")
-            br
-            br
-            br
-        div
-            label(for="password") Password: 
-            br
-            input(type="text" name="password" placeholder="Your Password")
-            br
-            br
-            br
         div
             label(for="age") Age: 
             br
@@ -89,4 +74,12 @@ block content
         div
             br
             br
-            button(type="submit", id='signUp_btn', onclick='handleFormCreate(event)') Sign Up
+            button(type="submit", id='update_btn', onclick='handleFormUpdate(event)') Update user
+        div
+            br
+            br
+            button(type="submit", id='signOut_btn', onclick='handleGoToFormOut()') Log Out
+        div
+            br
+            br
+            button(type="submit", id='option_btn', onclick='handleGoToFormOption()') Back 

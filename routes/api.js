@@ -1,8 +1,3 @@
-// const { MongoClient, ObjectId } = require("mongodb");
-// const uri = "mongodb://localhost:2717";
-// const client = new MongoClient(uri);
-// const database = client.db("dataExpress");
-// const collection = database.collection("users");
 var express = require('express');
 var session = require('express-session');
 var router = express.Router();

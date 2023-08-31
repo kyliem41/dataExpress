@@ -14,14 +14,10 @@ router.get('/', function (req, res, next) {
 router.post('/', async function (req, res, next) {
   const client = new MongoClient(uri);
 
-  req.session.userSession = req.body;
-
   try {
     await client.connect();
     const database = client.db("dataExpress");
     const collection = database.collection("users");
-
-    // let user = req.body;
 
     const {
       username,
@@ -37,6 +33,7 @@ router.post('/', async function (req, res, next) {
     console.log("Comparing hashed passwords: ", password, "\n", userLogIn.password)
 
     if (userLogIn && await passwordUtil.comparePass(password, userLogIn.password)) {
+      req.session.user = userLogIn;
       res.json({ success: true });
     } else {
       res.json({ success: false });
