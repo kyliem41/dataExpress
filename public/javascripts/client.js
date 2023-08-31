@@ -27,7 +27,7 @@ function handleGoToFormOut() {
 }
 
 function handleGoToFormOption() {
-    // window.location.href = '/option';
+    window.location.href = 'localhost:3000/';
     console.log("printing");
 }
 
@@ -101,6 +101,7 @@ function createUser() {
     .catch(error => {
         console.error("Error: ", error);
     });
+    window.location.href = '/logIn';
 }
 
 function updateInfo() {

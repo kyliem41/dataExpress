@@ -5,7 +5,12 @@ const { MongoClient, ObjectId } = require('mongodb');
 const uri = "mongodb://localhost:2717";
 
 router.get('/', function(req, res, next) {
-  res.render('update', { title: 'Express' });
+  if(req.session.user){
+    console.log('Someone loged in')
+    res.render('update', { title: 'Express' ,logIn: "Options", logLink: "/option"});
+  }else{
+    res.render('update', { title: 'Express', logIn: "Log In", logLink: "/logIn"});
+  }
 });
 
 router.post('/', async function(req, res, next) {

@@ -7,12 +7,17 @@ const uri = "mongodb://localhost:2717";
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.render('signUp', { title: 'Express' });
+  if(req.session.user){
+    console.log('Someone loged in')
+    res.render('signUp', { title: 'Express' ,logIn: "Options", logLink: "/option"});
+  }else{
+    res.render('signUp', { title: 'Express', logIn: "Log In", logLink: "/logIn"});
+  }
 });
 
 router.post('/', async function(req, res, next) {
   const client = new MongoClient(uri);
-
+  req.session.user = req.body;
   try {
     const database = client.db("dataExpress");
     const collection = database.collection("users");

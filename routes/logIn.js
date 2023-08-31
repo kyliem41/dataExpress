@@ -6,14 +6,19 @@ const { MongoClient, ObjectId } = require('mongodb');
 const uri = "mongodb://localhost:2717";
 
 router.get('/', function (req, res, next) {
-  let user = req.session.user;
-  res.cookie('john', 'johnson');
-  res.render('login');
+  // let user = req.session.user;
+  // res.cookie('john', 'johnson');
+  if(req.session.user){
+    console.log('Someone loged in')
+    res.render('login', { title: 'Express' ,logIn: "Options", logLink: "/option"});
+  }else{
+    res.render('login', { title: 'Express', logIn: "Log In", logLink: "/logIn"});
+  }
 });
 
 router.post('/', async function (req, res, next) {
   const client = new MongoClient(uri);
-
+  
   try {
     await client.connect();
     const database = client.db("dataExpress");
@@ -23,7 +28,8 @@ router.post('/', async function (req, res, next) {
       username,
       password
     } = req.query;
-
+    req.session.user = username
+    res.cookie(username)
     const userLogIn = await collection.findOne({ username: username });
 
     console.log("Recieved username: ", username);
