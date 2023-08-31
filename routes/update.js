@@ -7,9 +7,9 @@ const uri = "mongodb://localhost:2717";
 router.get('/', function(req, res, next) {
   if(req.session.user){
     console.log('Someone loged in')
-    res.render('update', { title: 'Express' ,logIn: "Options", logLink: "/option"});
+    res.render('update', { title: 'Express' ,logIn: "Options", logLink: "/option", pageSize:"height:100%"});
   }else{
-    res.render('update', { title: 'Express', logIn: "Log In", logLink: "/logIn"});
+    res.render('update', { title: 'Express', logIn: "Log In", logLink: "/logIn", pageSize:"height:100%"});
   }
 });
 

@@ -10,9 +10,9 @@ router.get('/', function (req, res, next) {
   // res.cookie('john', 'johnson');
   if(req.session.user){
     console.log('Someone loged in')
-    res.render('login', { title: 'Express' ,logIn: "Options", logLink: "/option"});
+    res.render('login', { title: 'Express' ,logIn: "Options", logLink: "/option", pageSize:"height:100%"});
   }else{
-    res.render('login', { title: 'Express', logIn: "Log In", logLink: "/logIn"});
+    res.render('login', { title: 'Express', logIn: "Log In", logLink: "/logIn", pageSize:"height:100%"});
   }
 });
 
