@@ -15,94 +15,113 @@ block content
   script(src="/client.js" defer)
 
   script.
-    const ctxCookies = document.getElementById("myChartCookies");
+    async function fetchChartData() {
+      try {
+        const response = await fetch('/api');
+        const data = await response.json();
+        createCharts(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
-    new Chart(ctxCookies, {
-      type: 'bar',
-      data: {
-        labels: ['Chips Ahoy', 'Oreo', 'Oatmeal Raisin', 'Macadamia Nut'],
-        datasets: [{
-          label: '# of votes',
-          data: [9, 6, 3, 4],
-          backgroundColor: '#97D8C4',
-          borderColor: 'black',
-          borderWidth: 1
-        }] 
-      },
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: 'Favorite Cookies Table',
-            color: 'black'
-          }
+    function createCharts(stats) {
+      createChartCookie('myChartCookies', stats[0]);
+      createChartColor('myChartColor', stats[1]);
+      createChartLang('myChartLang', stats[2]);
+    }
+
+    function createChartCookie(canvasId, chartData) {
+      const ctx = document.getElementById(canvasId);
+      new Chart(ctx, {
+        type: 'bar', 
+        data: {
+          labels: chartData.options,
+          datasets: [{
+            label: '# of votes',
+            data: chartData.votes,
+            backgroundColor: '#97D8C4',
+            borderColor: 'black', 
+            borderWidth: 1
+          }]
         },
-        scales: {
-          y: {
-            beginAtZero: true
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: chartData.question + ' Table',
+              color: 'black'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
           }
         }
-      }
-    });    
+      });
+    }
 
-  script.
-    const ctxColor = document.getElementById("myChartColor");
-
-    new Chart(ctxColor, {
-      type: 'bar',
-      data: {
-        labels: ['Red', 'Green', 'Blue', 'Purple'],
-        datasets: [{
-          label: '# of votes',
-          data: [7, 11, 3, 5,],
-          backgroundColor: '#E7BBE3',
-          borderColor: 'black',
-          borderWidth: 1,
-        }] 
-      },
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: 'Favorite Colors Table',
-            color: 'black'
-          }
+    function createChartColor(canvasId, chartData) {
+      const ctx = document.getElementById(canvasId);
+      new Chart(ctx, {
+        type: 'bar', 
+        data: {
+          labels: chartData.options,
+          datasets: [{
+            label: '# of votes',
+            data: chartData.votes,
+            backgroundColor: '#E7BBE3',
+            borderColor: 'black', 
+            borderWidth: 1
+          }]
         },
-        scales: {
-          y: {
-            beginAtZero: true
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: chartData.question + ' Table',
+              color: 'black'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
           }
         }
-      }
-    });  
+      });
+    }
 
-  script.
-    const ctxLang = document.getElementById("myChartLang");
-
-    new Chart(ctxLang, {
-      type: 'bar',
-      data: {
-        labels: ['Java', 'JavaScript', 'Python', 'C++'],
-        datasets: [{
-          label: '# of votes',
-          data: [10, 8, 3, 9],
-          backgroundColor: '#7CC6FE',
-          borderColor: 'black',
-          borderWidth: 1
-        }] 
-      },
-      options: {
-        plugins: {
-          title: {
-            display: true,
-            text: 'Favorite Programming Languages Table',
-            color: 'black'
-          }
+    function createChartLang(canvasId, chartData) {
+      const ctx = document.getElementById(canvasId);
+      new Chart(ctx, {
+        type: 'bar', 
+        data: {
+          labels: chartData.options,
+          datasets: [{
+            label: '# of votes',
+            data: chartData.votes,
+            backgroundColor: '#7CC6FE',
+            borderColor: 'black', 
+            borderWidth: 1
+          }]
         },
-        scales: {
-          y: {
-            beginAtZero: true
+        options: {
+          plugins: {
+            title: {
+              display: true,
+              text: chartData.question + ' Table',
+              color: 'black'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
           }
         }
-      }
-    });   
+      });
+    }
+
+    fetchChartData();
