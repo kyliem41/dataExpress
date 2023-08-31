@@ -14,14 +14,7 @@ function signIn() {
 
     const username = formData.get("username");
     const password = formData.get("password");
-
-    // const hashedPass = bcrypt.hash(password, 10);
-
-    // const userData = {
-    //     username: username,
-    //     password: password
-    // }
-
+    
     fetch(`/logIn?username=${username}&password=${password}`, {
         method: 'POST',
         headers: {
@@ -30,11 +23,14 @@ function signIn() {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         if (data.success) {
-            alert("User logged in!")
-            updateInfo();
+            alert("User logged in!");
+            console.log("user logged in");
+            //updateInfo();
         } else {
-            alert("User log in failed.")
+            alert("User log in failed.");
+            console.log("smth went wrong");
         }
     })
     .catch(error => {
@@ -84,9 +80,8 @@ function createUser() {
     });
 }
 
-function updateInfo() {
-    fetch('localhost:3000/api').then(response => response.json()).then((data) => {
+// function updateInfo() {
+//     fetch('localhost:3000/api').then(response => response.json()).then((data) => {
 
-    })
-}
-updateInf
+//     })
+// }

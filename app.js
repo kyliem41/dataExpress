@@ -4,41 +4,36 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(session);
-const bcrypt = require('bcryptjs');
+
 var indexRouter = require('./routes/index');
 var logInRouter = require('./routes/logIn');
 var signUpRouter = require('./routes/signUp');
 var apiRouter = require('./routes/api');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
-
-
-///////////////////
-const store = new MongoDBStore({
-  uri: 'mongodb://localhost:2717',
-  collection: 'sessions'
-});
-
-app.use(session({
-   secret: 'tester',
-    cookie: { maxAge: 60000 }
-}));
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'chaosRecipe',
+  cookie: { secure: false },
+  resave: false,
+  saveUninitialized: true
+}));
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 app.use('/', indexRouter);
 app.use('/logIn', logInRouter);
 app.use('/signUp', signUpRouter);
 app.use('/api', apiRouter);
+app.use('/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

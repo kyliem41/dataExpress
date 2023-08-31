@@ -2,9 +2,7 @@ var express = require('express');
 var router = express.Router();
 const passwordUtil = require('../security/password');
 var session = require('express-session');
-const bcrypt = require('bcryptjs');
 const { MongoClient, ObjectId } = require('mongodb');
-const { hashPass } = require('../security/password');
 const uri = "mongodb://localhost:2717";
 
 /* GET users listing. */
@@ -21,7 +19,7 @@ router.post('/', async function(req, res, next) {
 
     const { username, password, age, email, answer1, answer2, answer3 } = req.body;
     
-    let hashedPass = passwordUtil.hashPass(password);
+    let hashedPass = await passwordUtil.hashPass(password);
 
     let user = {
       username: username,
